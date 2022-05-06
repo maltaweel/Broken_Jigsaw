@@ -7,18 +7,23 @@ Created on 4 May 2022
 from __future__ import print_function
 
 import argparse
+from image import fragment_extrapolation as fe 
 
 from image.plot import Plot
 
 import matplotlib.pyplot as plt
 import cv2 as cv
 
+images=[]
+
 def show_image(img, title):
     if not args.verbose:
         Plot(img, title)
     plt.show()
 
-
+def appendImageData(image):
+    images.append(image)
+    
 def parse_arguments():
     """Parses input arguments required to solve puzzle"""
     parser = argparse.ArgumentParser(
@@ -44,5 +49,8 @@ if __name__ == "__main__":
     image = cv.imread(args.image)
     image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
-   
-    show_image(image, "Current state")
+    appendImageData(image)
+    #show_image(image, "Current state")
+    
+    fe.fragExtract(images)
+    
