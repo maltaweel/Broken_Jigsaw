@@ -34,6 +34,8 @@ def fragExtract(images):
         cv2.imwrite(os.path.join(total_image,'simple_'+str(img)+'.jpg'), image_copy3)
         
         img+=1
+        
+        newImages=[]
         for cnt in contours2:
             idx += 1
             x, y, w, h = cv2.boundingRect(cnt)
@@ -42,9 +44,12 @@ def fragExtract(images):
                 continue
             cv2.imwrite(os.path.join(contours_directory,str(idx) + '.png'), roi)
             cv2.rectangle(image, (x, y), (x + w, y + h), (200, 0, 0), 2)
-        
+            newImages.append(os.path.join(contours_directory,str(idx) + '.png'))
+            
         cv2.imshow('CHAIN_APPROX_SIMPLE Point only', image_copy3)
-        cv2.waitKey(0)
+   #    cv2.waitKey(0)
         cv2.destroyAllWindows()
+        
+        return newImages
         
   

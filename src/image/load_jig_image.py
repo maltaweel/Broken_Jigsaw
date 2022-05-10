@@ -7,7 +7,8 @@ Created on 4 May 2022
 from __future__ import print_function
 
 import argparse
-from image import fragment_extrapolation as fe 
+from image import fragment_extrapolation as fe
+from image import multiTemplate_matching as me 
 
 from image.plot import Plot
 
@@ -52,5 +53,9 @@ if __name__ == "__main__":
     appendImageData(image)
     #show_image(image, "Current state")
     
-    fe.fragExtract(images)
+    images=fe.fragExtract(images)
+    me.templateImageMatching(images)
+    
+    
+    
     
